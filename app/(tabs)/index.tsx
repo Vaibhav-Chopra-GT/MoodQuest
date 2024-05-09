@@ -1,70 +1,107 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import React from 'react';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-
-export default function HomeScreen() {
+const HomePage = () => {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
+    <View style={styles.container}>
+      {/* Header */}
+      <View style={styles.header}>
         <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
+          source={require('D:\code\MoodQuest\assets\download.jpeg')}
+          style={styles.logo}
+          resizeMode="contain"
         />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({ ios: 'cmd + d', android: 'cmd + m' })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+        <Text style={styles.headerText}>Welcome to My App</Text>
+      </View>
+
+      {/* Main Content */}
+      <View style={styles.mainContent}>
+        <Text style={styles.sectionTitle}>Featured Items</Text>
+        {/* Featured Items */}
+        <TouchableOpacity style={styles.featuredItem}>
+          {/* <Image
+            source={require('./assets/download.jpeg')}
+            style={styles.itemImage}
+            resizeMode="cover"
+          /> */}
+          <Text style={styles.itemTitle}>Item 1</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.featuredItem}>
+          {/* <Image
+            source={require('./assets/download.jpeg')}
+            style={styles.itemImage}
+            resizeMode="cover"
+          /> */}
+          <Text style={styles.itemTitle}>Item 2</Text>
+        </TouchableOpacity>
+      </View>
+
+      {/* Bottom Navigation Bar */}
+      <View style={styles.bottomNav}>
+        <Text style={styles.navItem}>Home</Text>
+        <Text style={styles.navItem}>Search</Text>
+        <Text style={styles.navItem}>Profile</Text>
+      </View>
+    </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  titleContainer: {
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  header: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    justifyContent: 'center',
+    padding: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  logo: {
+    width: 40,
+    height: 40,
+    marginRight: 10,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  headerText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  mainContent: {
+    flex: 1,
+    padding: 20,
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  featuredItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  itemImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 10,
+    marginRight: 10,
+  },
+  itemTitle: {
+    fontSize: 16,
+  },
+  bottomNav: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    paddingVertical: 10,
+    borderTopWidth: 1,
+    borderTopColor: '#ccc',
+  },
+  navItem: {
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
+
+export default HomePage;
